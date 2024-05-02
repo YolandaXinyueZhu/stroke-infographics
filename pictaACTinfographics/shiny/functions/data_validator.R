@@ -58,7 +58,7 @@ is_row_valid <- function(data_row) {
            )
   }
   
-  if (!data_row[['today_act_score']] %in% 5:25) {
+  if (!data_row[['today_act_score']] %in% 110:150) {
     #print(data_row)
     #print("today score out of range")
     return(list(bool = FALSE,
@@ -66,7 +66,7 @@ is_row_valid <- function(data_row) {
     )
   }
   
-  if (!is.na(data_row[['previous_act_score']]) & !data_row[['previous_act_score']] %in% 5:25) {
+  if (!is.na(data_row[['previous_act_score']]) & !data_row[['previous_act_score']] %in% 110:150) {
     #print(data_row)
     #print("previous score out of range")
     return(list(bool = FALSE,

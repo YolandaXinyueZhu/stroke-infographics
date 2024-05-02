@@ -1,5 +1,25 @@
-options(tinytex.verbose = TRUE)
+###小姐姐，可以加一个微信嘛，以后有需要可以常联系，我的微信号和手机号是18582326396
+### 这个事情请保密，他们平台不让老师和学生联系，事以密成，言以密泄
 
+options(tinytex.verbose = TRUE)
+library(here)
+plot_geom_score_arrows<- function(x,y){
+  x1=(x-110)*0.15/40+0.117
+  y1=(y-75)*0.15/20+0.117
+  # 打开图片
+  image_path<-normalizePath("www/graphical_elements_act/ACT number line ENG - cropped.png")
+  image <- image_read(image_path)
+  # 显示图片
+  plot.new()
+  plot.window(xlim = c(0, 1), ylim = c(0, 1))
+  result<-rasterImage(image, 0, 0, 1, 1)+ 
+    arrows(x0 = x1, y0 = 0.35, x1 = x1, y1 = 0.38, length = 0.1,lwd = 2)+
+    text(x1, 0.4, labels = x)+
+    arrows(x0 = y1, y0 = 0.17, x1 = y1, y1 = 0.2, length = 0.1,lwd = 2)+
+    text(y1, 0.22, labels = y) +text(0.155, 0.78, labels =TeX(paste("\\frac{", x, "}{", y, "}")))
+  result
+  
+}
 server <- function(input, output, session) {
 
   default_inputs <- reactive({
@@ -18,6 +38,8 @@ server <- function(input, output, session) {
       asthma_progress_statment = NA
     )
   })
+  
+
   
   # PT_INFO -----
   PT_INFO <- reactive({
@@ -62,20 +84,9 @@ server <- function(input, output, session) {
   })
 
   # image -----
-  output$plot <- renderImage({
-    outfile <- plot_pth_norm()
-
-    ggplot2::ggsave(filename =  outfile,
-                    plot = arrow_g(),
-                    scale = 1,
-                    width = 11, height = 8.5, units = "in", dpi = 300)
-
-    list(src = outfile,
-         contentType = 'image/png',
-         width = "100%",
-         #height = "100%",
-         alt = "Alternative text")
-  }, deleteFile = FALSE)
+  output$plot <- renderPlot({
+    plot_geom_score_arrows(x=PT_INFO()$today_act,y= PT_INFO()$previous_act)
+  })
 
   # pdf file name -----
   pdf_single_filename <- reactive({

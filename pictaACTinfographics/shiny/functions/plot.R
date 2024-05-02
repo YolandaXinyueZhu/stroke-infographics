@@ -41,7 +41,7 @@ geom_today_score_value <- function(x, y, label, size = 10, fontface = "bold") {
   )
 }
 
-geom_today_score_today <- function(x, y, language, size = 4.5, fontface = "bold") {
+geom_today_score_today <- function(x, y, language, size = 3, fontface = "bold") {
   layer(
     geom = 'text',
     stat = "identity",
@@ -179,18 +179,18 @@ geom_score_arrows <- function(base_g,
                               diff_arrow_spacing_x = diff_arrow_buffer_x,
                               diff_arrow_spacing_y = diff_arrow_buffer_y) {
   
-  today_arrow <- base_g +
+  today_arrow <- base_g #+
     
-    geom_today_score_arrow(aes(x = x_breaks[today_act],
-                               y = today_arrow_ystart,
-                               xend = x_breaks[today_act],
-                               yend = today_arrow_yend)) +
+   # geom_today_score_arrow(aes(x = x_breaks[today_act],
+   #                            y = today_arrow_ystart,
+   #                            xend = x_breaks[today_act],
+    #                           yend = today_arrow_yend)) +
     
-    geom_today_score_value(x = x_breaks[today_act],
-                           y = today_value_y,
-                           label = glue::glue("{today_act}")) +
+   # geom_today_score_value(x = x_breaks[today_act],
+    #                       y = today_value_y,
+   #                        label = glue::glue("{today_act}")) +
     
-    geom_today_score_today(x = x_breaks[today_act], y = today_today_y, language = language)
+    #geom_today_score_today(x = x_breaks[today_act], y = today_today_y, language = language)
   
   if (!is.na(previous_act)) {
     # if there is a previous act value

@@ -17,7 +17,7 @@ dashboardPage(
                 box(
                   width = 4,
                   selectInput("language", label = h3("Language"), 
-                              choices = list("English" = "english", "Spanish" = "spanish"), 
+                              choices = list("English" = "english", "Spanish" = "spanish","chinese"="chinese"), 
                               selected = "english"),
                   textInput("name", label = h3("Name"), value = "", placeholder = "Enter name ...")
                 ),
@@ -25,12 +25,12 @@ dashboardPage(
                 box(
                   width = 4,
                   dateInput("today_date", label = h3("Today's date"), value = Sys.Date()),
-                  numericInput("today_act", label = h3("Today ACT"), value = 25)
+                  numericInput("today_act", label = h3("measurements_diastolicbloodpressure_value"), value = 130)
                 ),
                 box(
                   width = 4,
                   dateInput("previous_date", label = h3("Previous date"), value = Sys.Date()),
-                  numericInput("previous_act", label = h3("Previous ACT"), value = 5),
+                  numericInput("previous_act", label = h3("measurements_meanbloodpressure_value"), value = 75),
                 )
               ),
               fluidRow(
@@ -40,14 +40,14 @@ dashboardPage(
                 )
               ),
               fluidRow(
-                box(width = 6,
-                    title = "Image preview",
-                    shinycssloaders::withSpinner(
-                      imageOutput("plot", width = "100%"),
+                  box(width = 6,
+                      title = "Image preview",
+                      shinycssloaders::withSpinner(
+                        imageOutput("plot", width = "100%"),
                       type = 3,
-                      color.background = "#FFFFFF"
-                    )
-                ),
+                        color.background = "#FFFFFF"
+                      )
+                  ),
                 box(width = 6,
                     title = "Text preview",
                   verbatimTextOutput("asthma_statements")
