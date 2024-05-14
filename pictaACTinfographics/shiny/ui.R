@@ -25,12 +25,12 @@ dashboardPage(
                 box(
                   width = 4,
                   dateInput("today_date", label = h3("Today's date"), value = Sys.Date()),
-                  numericInput("today_act", label = h3("measurements_diastolicbloodpressure_value"), value = 130)
+                  numericInput("today_act", label = h3("Systolic blood pressure"), value = 130)
                 ),
                 box(
                   width = 4,
                   dateInput("previous_date", label = h3("Previous date"), value = Sys.Date()),
-                  numericInput("previous_act", label = h3("measurements_meanbloodpressure_value"), value = 75),
+                  numericInput("previous_act", label = h3("Diastolic blood pressure"), value = 75),
                 )
               ),
               fluidRow(

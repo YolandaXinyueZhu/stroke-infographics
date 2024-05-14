@@ -1,8 +1,12 @@
 ###小姐姐，可以加一个微信嘛，以后有需要可以常联系，我的微信号和手机号是18582326396
 ### 这个事情请保密，他们平台不让老师和学生联系，事以密成，言以密泄
 
+library(here)
+library(magick)
+library(graphics)
 options(tinytex.verbose = TRUE)
 library(here)
+library(latex2exp)
 plot_geom_score_arrows<- function(x,y){
   x1=(x-110)*0.15/40+0.117
   y1=(y-75)*0.15/20+0.117
@@ -11,7 +15,7 @@ plot_geom_score_arrows<- function(x,y){
   image <- image_read(image_path)
   # 显示图片
   plot.new()
-  plot.window(xlim = c(0, 1), ylim = c(0, 1))
+  plot.window(xlim = c(0, 1), ylim = c(0, 0.92))
   result<-rasterImage(image, 0, 0, 1, 1)+ 
     arrows(x0 = x1, y0 = 0.35, x1 = x1, y1 = 0.38, length = 0.1,lwd = 2)+
     text(x1, 0.4, labels = x)+
@@ -199,7 +203,6 @@ server <- function(input, output, session) {
     print(glue::glue("Name: {PT_INFO()$display_name}"))
     print(glue::glue("Date text: {PT_INFO()$today_date_text}"))
     print(glue::glue("Score: {PT_INFO()$asthma_score_statement}"))
-    print(glue::glue("Interpretive: {PT_INFO()$asthma_interpretive_statement}"))
     print(glue::glue("Progress: {PT_INFO()$asthma_progress_statment}"))
   })
   
